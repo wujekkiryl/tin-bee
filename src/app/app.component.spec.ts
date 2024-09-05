@@ -22,4 +22,11 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('tin-bee');
   });
+
+  it('should render header', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('lib-header')).toBeTruthy();
+  });
 });
