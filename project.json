@@ -23,7 +23,8 @@
             "input": "public"
           }
         ],
-        "styles": ["./src/styles.scss"],
+        "styles": ["./src/styles.scss",
+          "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
         "scripts": []
       },
       "configurations": {
