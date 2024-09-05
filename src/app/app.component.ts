@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from '@tin-bee/home';
+import { HomeComponent } from '@tin-bee/home/feature';
 import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({

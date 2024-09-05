@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from '@tin-bee/home';
+import { HomeComponent } from '@tin-bee/home/feature';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

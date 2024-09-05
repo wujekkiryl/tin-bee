@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@tin-bee/header": ["libs/header/src/index.ts"],
-      "@tin-bee/home": ["libs/home/src/index.ts"],
+      "@tin-bee/home/feature": ["libs/home/feature/src/index.ts"],
       "@tin-bee/shared/ui/search-input": [
         "libs/shared/ui/search-input/src/index.ts"
       ]
