@@ -16,6 +16,7 @@ module.exports = {
       placeholderBackground: '#EEEFF0',
       white: '#FFFFFF',
       blue: '#0F75B8',
+      purple: '#6B3C9B',
     },
     extend: {
       boxShadow: {

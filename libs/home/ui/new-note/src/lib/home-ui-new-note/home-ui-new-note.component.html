@@ -4,6 +4,11 @@
         <!--        <lib-shared-ui-button libCancelButton>cancel</lib-shared-ui-button>-->
         <lib-shared-ui-button class="text-blue font-thin text-sm" (click)="cancelNoteAdding()">Cancel</lib-shared-ui-button>
     </section>
-    <lib-shared-ui-input [placeholder]="'Untitled Note'"></lib-shared-ui-input>
-    <lib-shared-ui-textarea [placeholder]="'Your note...'"></lib-shared-ui-textarea>
+    <form [formGroup]="addNoteForm"  class="relative">
+        <lib-shared-ui-input [placeholder]="'Untitled Note'" formControlName="title"></lib-shared-ui-input>
+        <lib-shared-ui-textarea [placeholder]="'Your note...'" formControlName="content"></lib-shared-ui-textarea>
+        @if (showAddButton()) {
+            <lib-shared-ui-button libPrimaryButton class="absolute right-6 bottom-10" (click)="addNote()">Add</lib-shared-ui-button>
+        }
+    </form>
 </section>

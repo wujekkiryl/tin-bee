@@ -6,6 +6,6 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class PrimaryButtonDirective {
   @HostBinding('class') get classes(): string {
-    return 'text-xl';
+    return 'text-md font-thin bg-purple text-white';
   }
 }
