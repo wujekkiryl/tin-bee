@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@tin-bee/header": ["libs/header/src/index.ts"],
+      "@tin-bee/home/data-access": ["libs/home/data-access/src/index.ts"],
       "@tin-bee/home/feature": ["libs/home/feature/src/index.ts"],
       "@tin-bee/home/ui/empty-state": ["libs/home/ui/empty-state/src/index.ts"],
       "@tin-bee/home/ui/new-note": ["libs/home/ui/new-note/src/index.ts"],
