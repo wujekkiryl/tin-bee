@@ -1,7 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@tin-bee/header';
-import { SharedUiSearchInputComponent } from '@tin-bee/shared/ui/search-input';
+import { SharedUiInputComponent } from '@tin-bee/shared/ui/input';
 import { HomeUiEmptyStateComponent } from '@tin-bee/home/ui/empty-state';
 import { HomeUiNewNoteComponent } from '@tin-bee/home/ui/new-note';
 
@@ -11,7 +11,7 @@ import { HomeUiNewNoteComponent } from '@tin-bee/home/ui/new-note';
   imports: [
     CommonModule,
     HeaderComponent,
-    SharedUiSearchInputComponent,
+    SharedUiInputComponent,
     HomeUiEmptyStateComponent,
     HomeUiNewNoteComponent,
   ],

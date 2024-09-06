@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedUiSearchInputComponent } from './shared-ui-search-input.component';
+import { SharedUiInputComponent } from './shared-ui-input.component';
 
 describe('SharedUiSearchInputComponent', () => {
-  let component: SharedUiSearchInputComponent;
-  let fixture: ComponentFixture<SharedUiSearchInputComponent>;
+  let component: SharedUiInputComponent;
+  let fixture: ComponentFixture<SharedUiInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedUiSearchInputComponent],
+      imports: [SharedUiInputComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SharedUiSearchInputComponent);
+    fixture = TestBed.createComponent(SharedUiInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'shared-ui-search-input',
+  displayName: 'shared-ui-input',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/shared/ui/search-input',
+  coverageDirectory: '../../../../coverage/libs/shared/ui/input',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

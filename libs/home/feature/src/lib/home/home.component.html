@@ -1,6 +1,6 @@
 <main class="p-2 flex flex-col gap-6 mt-5">
     <lib-header></lib-header>
-    <lib-shared-ui-search-input></lib-shared-ui-search-input>
+    <lib-shared-ui-input [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
     @if (showEmptyState()) {
         <lib-home-ui-empty-state (addNewNote)="addNote()"></lib-home-ui-empty-state>
     }
