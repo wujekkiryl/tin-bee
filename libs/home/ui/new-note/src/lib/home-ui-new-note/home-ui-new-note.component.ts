@@ -5,6 +5,7 @@ import {
   CancelButtonDirective,
   SharedUiButtonComponent,
 } from '@tin-bee/shared/ui/button';
+import { SharedUiTextareaComponent } from '@tin-bee/shared/ui/textarea';
 
 @Component({
   selector: 'lib-home-ui-new-note',
@@ -14,6 +15,7 @@ import {
     SharedUiInputComponent,
     SharedUiButtonComponent,
     CancelButtonDirective,
+    SharedUiTextareaComponent,
   ],
   templateUrl: './home-ui-new-note.component.html',
   styleUrl: './home-ui-new-note.component.css',

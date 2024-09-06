@@ -20,7 +20,8 @@
       "@tin-bee/home/ui/empty-state": ["libs/home/ui/empty-state/src/index.ts"],
       "@tin-bee/home/ui/new-note": ["libs/home/ui/new-note/src/index.ts"],
       "@tin-bee/shared/ui/button": ["libs/shared/ui/button/src/index.ts"],
-      "@tin-bee/shared/ui/input": ["libs/shared/ui/input/src/index.ts"]
+      "@tin-bee/shared/ui/input": ["libs/shared/ui/input/src/index.ts"],
+      "@tin-bee/shared/ui/textarea": ["libs/shared/ui/textarea/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
