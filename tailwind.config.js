@@ -13,6 +13,7 @@ module.exports = {
       textPrimary: '#1B1C1E',
       placeholderText: '#5B5C5E',
       placeholderBackground: '#EEEFF0',
+      white: '#FFFFFF',
     },
     extend: {},
   },
