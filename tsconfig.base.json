@@ -18,6 +18,7 @@
       "@tin-bee/header": ["libs/header/src/index.ts"],
       "@tin-bee/home/feature": ["libs/home/feature/src/index.ts"],
       "@tin-bee/home/ui/empty-state": ["libs/home/ui/empty-state/src/index.ts"],
+      "@tin-bee/home/ui/new-note": ["libs/home/ui/new-note/src/index.ts"],
       "@tin-bee/shared/ui/button": ["libs/shared/ui/button/src/index.ts"],
       "@tin-bee/shared/ui/search-input": [
         "libs/shared/ui/search-input/src/index.ts"

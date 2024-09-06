@@ -1,5 +1,10 @@
 <main class="p-2 flex flex-col gap-6 mt-5">
     <lib-header></lib-header>
     <lib-shared-ui-search-input></lib-shared-ui-search-input>
-    <lib-home-ui-empty-state></lib-home-ui-empty-state>
+    @if (showEmptyState()) {
+        <lib-home-ui-empty-state (addNewNote)="addNote()"></lib-home-ui-empty-state>
+    }
+    @if (newNoteAddingInProgress()) {
+        <lib-home-ui-new-note></lib-home-ui-new-note>
+    }
 </main>

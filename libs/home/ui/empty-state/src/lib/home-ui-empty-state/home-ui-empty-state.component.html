@@ -7,6 +7,6 @@
     <h1 class="text-2xl text-textPrimary text-center">No notes yet</h1>
     <p class="text-lg font-thin text-center">Add a note to keep track of your learnings.</p>
     <section class="flex justify-center">
-        <lib-shared-ui-button libSecondaryButton [icon]="'note_add'">Add note</lib-shared-ui-button>
+        <lib-shared-ui-button libSecondaryButton [icon]="'note_add'" (click)="addNote()">Add note</lib-shared-ui-button>
     </section>
 </article>

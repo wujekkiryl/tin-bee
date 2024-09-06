@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {
@@ -17,4 +17,10 @@ import {
   ],
   templateUrl: './home-ui-empty-state.component.html',
 })
-export class HomeUiEmptyStateComponent {}
+export class HomeUiEmptyStateComponent {
+  @Output() addNewNote: EventEmitter<void> = new EventEmitter<void>();
+
+  addNote() {
+    this.addNewNote.emit();
+  }
+}
