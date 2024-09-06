@@ -2,5 +2,5 @@
     @if (prefixIcon) {
         <mat-icon class="text-icon" matPrefix>{{prefixIcon}}</mat-icon>
     }
-  <input matInput placeholder="{{placeholder}}" />
+  <input matInput [disabled]="disabled" [value]="value" (change)="changeValue($event)" placeholder="{{placeholder}}" />
 </mat-form-field>
