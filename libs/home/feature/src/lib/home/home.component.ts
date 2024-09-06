@@ -18,7 +18,7 @@ import { HomeUiNewNoteComponent } from '@tin-bee/home/ui/new-note';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  newNoteAddingInProgress = signal(false);
+  newNoteAddingInProgress = signal(true); // TODO: change to false
   showEmptyState = computed(() => !this.newNoteAddingInProgress());
   addNote() {
     this.newNoteAddingInProgress.set(true);

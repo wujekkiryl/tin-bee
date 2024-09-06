@@ -1,8 +1,8 @@
-<main class="p-2 flex flex-col gap-6 mt-5">
-    <lib-header></lib-header>
-    <lib-shared-ui-input [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
+<main class="py-2 flex flex-col gap-6 mt-5">
+    <lib-header class="px-2"></lib-header>
+    <lib-shared-ui-input class="px-2" [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
     @if (showEmptyState()) {
-        <lib-home-ui-empty-state (addNewNote)="addNote()"></lib-home-ui-empty-state>
+        <lib-home-ui-empty-state class="px-2" (addNewNote)="addNote()"></lib-home-ui-empty-state>
     }
     @if (newNoteAddingInProgress()) {
         <lib-home-ui-new-note></lib-home-ui-new-note>

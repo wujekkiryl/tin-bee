@@ -16,7 +16,11 @@ module.exports = {
       placeholderBackground: '#EEEFF0',
       white: '#FFFFFF',
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        box: '0px 1px 5px rgba(0, 0, 0, 0.05), 0px -1px 5px rgba(0, 0, 0, 0.05)',
+      },
+    },
   },
   plugins: [],
 };
