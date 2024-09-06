@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'fill' },
+      useValue: { appearance: 'fill', subscriptSizing: 'dynamic' },
     },
   ],
 };
