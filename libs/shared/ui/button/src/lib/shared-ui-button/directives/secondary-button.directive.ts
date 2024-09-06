@@ -6,6 +6,6 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class SecondaryButtonDirective {
   @HostBinding('class') get classes(): string {
-    return 'border-borderSecondary border';
+    return 'border-borderSecondary border text-xl';
   }
 }

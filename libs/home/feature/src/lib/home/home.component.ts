@@ -23,4 +23,8 @@ export class HomeComponent {
   addNote() {
     this.newNoteAddingInProgress.set(true);
   }
+
+  closeNoteAdding() {
+    this.newNoteAddingInProgress.set(false);
+  }
 }

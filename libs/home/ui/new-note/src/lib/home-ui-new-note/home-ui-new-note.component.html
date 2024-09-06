@@ -1,4 +1,8 @@
 <section class="flex flex-col p-2 gap-3 shadow-box mt-1">
-    <h2 class="text-xl mt-3">Add new note</h2>
+    <section class="flex flex-row justify-between">
+        <h2 class="text-xl mt-3">Add new note</h2>
+        <!--        <lib-shared-ui-button libCancelButton>cancel</lib-shared-ui-button>-->
+        <lib-shared-ui-button class="text-blue font-thin text-sm" (click)="cancelNoteAdding()">Cancel</lib-shared-ui-button>
+    </section>
     <lib-shared-ui-input [placeholder]="'Untitled Note'"></lib-shared-ui-input>
 </section>

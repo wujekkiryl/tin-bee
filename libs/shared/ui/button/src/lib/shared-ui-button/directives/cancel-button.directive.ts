@@ -1,11 +1,11 @@
 import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[libPrimaryButton]',
+  selector: '[libCancelButton]',
   standalone: true,
 })
-export class PrimaryButtonDirective {
+export class CancelButtonDirective {
   @HostBinding('class') get classes(): string {
-    return 'text-xl';
+    return 'border-borderSecondary border';
   }
 }

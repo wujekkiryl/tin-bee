@@ -5,6 +5,6 @@
         <lib-home-ui-empty-state class="px-2" (addNewNote)="addNote()"></lib-home-ui-empty-state>
     }
     @if (newNoteAddingInProgress()) {
-        <lib-home-ui-new-note></lib-home-ui-new-note>
+        <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()"></lib-home-ui-new-note>
     }
 </main>
