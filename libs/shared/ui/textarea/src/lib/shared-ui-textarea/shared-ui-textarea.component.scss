@@ -8,6 +8,9 @@
       .mat-mdc-text-field-wrapper {
         border-radius: 12px !important;
       }
+      .mdc-text-field--focused {
+        @apply bg-white border;
+      }
     }
     .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple {
       display: none;
