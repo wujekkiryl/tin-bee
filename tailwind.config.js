@@ -11,6 +11,7 @@ module.exports = {
     },
     colors: {
       textPrimary: '#1B1C1E',
+      borderSecondary: '#BCBCBD',
       placeholderText: '#5B5C5E',
       placeholderBackground: '#EEEFF0',
       white: '#FFFFFF',
