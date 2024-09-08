@@ -7,6 +7,7 @@ import { HomeUiNewNoteComponent } from '@tin-bee/home/ui/new-note';
 import { HomeDataAccessService, NoteAdd } from '@tin-bee/home/data-access';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, of, switchMap } from 'rxjs';
+import { HomeUiNoteComponent } from '@tin-bee/home/ui/note';
 
 @Component({
   selector: 'lib-home',
@@ -17,6 +18,7 @@ import { Observable, of, switchMap } from 'rxjs';
     SharedUiInputComponent,
     HomeUiEmptyStateComponent,
     HomeUiNewNoteComponent,
+    HomeUiNoteComponent,
   ],
   templateUrl: './home.component.html',
 })

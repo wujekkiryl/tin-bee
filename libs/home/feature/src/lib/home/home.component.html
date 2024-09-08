@@ -8,6 +8,6 @@
         <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
     }
     @for (note of notes(); track note.title) {
-        {{note.title}}
+        <lib-home-ui-note></lib-home-ui-note>
     }
 </main>
