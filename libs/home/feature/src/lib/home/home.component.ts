@@ -16,6 +16,8 @@ import {
   PrimaryButtonDirective,
   SharedUiButtonComponent,
 } from '@tin-bee/shared/ui/button';
+import { MatDialog } from '@angular/material/dialog';
+import { SharedUiDialogComponent } from '@tin-bee/shared/ui/dialog';
 
 @Component({
   selector: 'lib-home',
@@ -49,7 +51,10 @@ export class HomeComponent {
     () => !this.newNoteAddingInProgress() && this.notes()?.length === 0
   );
 
-  constructor(private readonly homeDataAccess: HomeDataAccessService) {
+  constructor(
+    private readonly homeDataAccess: HomeDataAccessService,
+    private dialog: MatDialog
+  ) {
     this.addNewNote.subscribe();
   }
 
@@ -65,6 +70,15 @@ export class HomeComponent {
   }
 
   deleteNote(noteId: string) {
-    this.homeDataAccess.deleteNote(noteId).subscribe();
+    const dialogRef = this.dialog.open(SharedUiDialogComponent, {
+      width: 'calc(100vw - 16px)',
+      maxWidth: 'calc(100vw - 16px)',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.homeDataAccess.deleteNote(noteId).subscribe();
+      }
+    });
   }
 }
