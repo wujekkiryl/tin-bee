@@ -26,7 +26,6 @@ import { NoteAdd } from '@tin-bee/home/data-access';
     PrimaryButtonDirective,
   ],
   templateUrl: './home-ui-new-note.component.html',
-  styleUrl: './home-ui-new-note.component.css',
 })
 export class HomeUiNewNoteComponent {
   addNoteForm = this.formBuilder.nonNullable.group<NoteAdd>({

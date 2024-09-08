@@ -60,6 +60,11 @@ export class HomeComponent {
   closeNoteAdding() {
     this.newNoteAddingInProgress.set(false);
   }
+  editNote(note: NoteView) {
+    console.log('Edit note', note);
+  }
 
-  protected readonly indexedDB = indexedDB;
+  deleteNote(noteId: string) {
+    this.homeDataAccess.deleteNote(noteId).subscribe();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { NoteView } from '@tin-bee/home/data-access';
@@ -12,4 +12,13 @@ import { NoteView } from '@tin-bee/home/data-access';
 })
 export class HomeUiNoteComponent {
   @Input() note!: NoteView;
+  @Output() noteDeleted = new EventEmitter<string>();
+  @Output() noteEdited = new EventEmitter<NoteView>();
+
+  deleteNote() {
+    this.noteDeleted.emit(this.note.id);
+  }
+  editNote() {
+    this.noteEdited.emit(this.note);
+  }
 }

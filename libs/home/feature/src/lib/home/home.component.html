@@ -1,4 +1,4 @@
-<main class="py-2 flex flex-col gap-6 max-h-screen">
+<main class="py-2 flex flex-col gap-6 pt-5 max-h-screen">
     <lib-header class="px-2"></lib-header>
     <lib-shared-ui-input class="px-2" [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
     @if (!showEmptyState() && !newNoteAddingInProgress()) {
@@ -13,8 +13,8 @@
         @if (newNoteAddingInProgress()) {
             <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
         }
-        @for (note of notes(); track note.title) {
-            <lib-home-ui-note class="px-2" [note]="note"></lib-home-ui-note>
+        @for (note of notes(); track note.id) {
+            <lib-home-ui-note class="px-2" [note]="note" (noteEdited)="editNote($event)" (noteDeleted)="deleteNote($event)"></lib-home-ui-note>
         }
     </section>
 </main>

@@ -5,4 +5,6 @@ import { NoteAdd } from './note-add';
 export interface HomeDataAccessPort {
   getAllNotes(): Observable<NoteView[]>;
   addNote(note: NoteAdd): Observable<void>;
+  editNote(noteId: string, note: NoteAdd): Observable<void>;
+  deleteNote(noteId: string): Observable<void>;
 }
