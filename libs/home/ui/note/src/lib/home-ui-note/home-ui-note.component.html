@@ -1,1 +1,11 @@
-<p>home-ui-note works!</p>
+<section class="flex flex-col gap-4 w-full p-2 shadow-box rounded-lg">
+    <div class="flex flex-row justify-between align-middle">
+        <h3 class="text-lg">{{note.title}}</h3>
+        <div class="flex gap-2 items-center">
+            <mat-icon class="">edit_note</mat-icon>
+            <mat-icon>delete</mat-icon>
+        </div>
+    </div>
+    <p class="text-textSecondary">{{note.content}}</p>
+    <h4 class="text-placeholderText">{{note.dateAdded | date: 'MMM dd'}}</h4>
+</section>

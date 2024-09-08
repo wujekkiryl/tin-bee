@@ -8,7 +8,39 @@ import { HomeDataAccessPort } from './home-data-access.port';
   providedIn: 'root',
 })
 export class HomeDataAccessService implements HomeDataAccessPort {
-  private notes: NoteView[] = [];
+  private notes: NoteView[] = [
+    {
+      title: 'First note',
+      content: 'This is the first note',
+      dateAdded: new Date(),
+    },
+    {
+      title: 'Second note',
+      content: 'This is the second note',
+      dateAdded: new Date(),
+    },
+    {
+      title: 'Note Title',
+      content:
+        'Very long Note Body to give you an example on how the box should act',
+      dateAdded: new Date(),
+    },
+    {
+      title: 'Note Title',
+      content: 'Note Body',
+      dateAdded: new Date(),
+    },
+    {
+      title: 'Note Title',
+      content: 'Note Body',
+      dateAdded: new Date(),
+    },
+    {
+      title: 'Note Title',
+      content: 'Note Body',
+      dateAdded: new Date(),
+    },
+  ];
   public addNote(note: NoteAdd): Observable<void> {
     this.notes.push({ ...note, dateAdded: new Date() });
     return of();

@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  max-height: 100vh;
+}

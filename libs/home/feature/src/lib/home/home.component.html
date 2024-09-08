@@ -1,13 +1,20 @@
-<main class="py-2 flex flex-col gap-6 mt-5">
+<main class="py-2 flex flex-col gap-6 max-h-screen">
     <lib-header class="px-2"></lib-header>
     <lib-shared-ui-input class="px-2" [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
+    @if (!showEmptyState() && !newNoteAddingInProgress()) {
+        <section class="px-2">
+            <lib-shared-ui-button libPrimaryButton class="!w-full flex justify-center" (click)="openAddNoteSection()">Add New</lib-shared-ui-button>
+        </section>
+    }
     @if (showEmptyState()) {
         <lib-home-ui-empty-state class="px-2" (addNewNote)="openAddNoteSection()"></lib-home-ui-empty-state>
     }
-    @if (newNoteAddingInProgress()) {
-        <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
-    }
-    @for (note of notes(); track note.title) {
-        <lib-home-ui-note></lib-home-ui-note>
-    }
+    <section class="flex flex-col gap-6 pt-1 overflow-scroll h-[888px]">
+        @if (newNoteAddingInProgress()) {
+            <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
+        }
+        @for (note of notes(); track note.title) {
+            <lib-home-ui-note class="px-2" [note]="note"></lib-home-ui-note>
+        }
+    </section>
 </main>

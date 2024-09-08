@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { NoteView } from '@tin-bee/home/data-access';
 
 @Component({
   selector: 'lib-home-ui-note',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './home-ui-note.component.html',
   styleUrl: './home-ui-note.component.css',
 })
-export class HomeUiNoteComponent {}
+export class HomeUiNoteComponent {
+  @Input() note!: NoteView;
+}
