@@ -25,7 +25,9 @@
         ],
         "styles": ["./src/styles.scss",
           "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
-        "scripts": []
+        "scripts": [
+          "libs/home/feature/src/lib/home/drag-and-drop.js"
+        ]
       },
       "configurations": {
         "production": {

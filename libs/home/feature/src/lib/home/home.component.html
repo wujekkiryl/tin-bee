@@ -6,7 +6,7 @@
     @if (showEmptyState()) {
         <lib-home-ui-empty-state class="px-4" (addNewNote)="openAddNoteSection()"></lib-home-ui-empty-state>
     }
-    <section class="flex flex-col gap-6 pt-1 overflow-scroll">
+    <section class="flex flex-col gap-6 pt-1 overflow-scroll" id="notes-container">
         @if (!showEmptyState() && !newNoteAddingInProgress()) {
             <section class="px-4">
                 <lib-shared-ui-button libPrimaryButton class="!w-full flex justify-center" (click)="openAddNoteSection()">Add New</lib-shared-ui-button>
@@ -16,7 +16,7 @@
             <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
         }
         @for (note of notes(); track note.id) {
-            <lib-home-ui-note class="px-4" [note]="note" (noteEdited)="editNote($event)" (noteDeleted)="deleteNote($event)"></lib-home-ui-note>
+            <lib-home-ui-note draggable="true" ondragstart="dragStarted(event)" ondragover="drag(event)" ondragend="dragEnd(event)" ondrop="handleDrop(event)" id="note-{{note.id}}" class="px-4" [note]="note" (noteEdited)="editNote($event)" (noteDeleted)="deleteNote($event)"></lib-home-ui-note>
         }
     </section>
     <div class="fixed bottom-0 w-full h-[1px] bg-white shadow-bottomWhite"></div>
