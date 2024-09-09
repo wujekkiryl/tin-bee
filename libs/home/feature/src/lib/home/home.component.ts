@@ -19,6 +19,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { SharedUiDialogComponent } from '@tin-bee/shared/ui/dialog';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 
 enum NoteFetchMode {
   All,
@@ -76,9 +77,22 @@ export class HomeComponent implements OnInit {
   constructor(
     private readonly homeDataAccess: HomeDataAccessService,
     private dialog: MatDialog,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
   ngOnInit() {
+    // only for presentation purposes
+    this.router.events.subscribe((val) => {
+      if (val instanceof RoutesRecognized) {
+        const queryParams = val.state.root.queryParams;
+        console.log(queryParams);
+        if (queryParams['loadFakeNotes']) {
+          this.homeDataAccess.loadFakeNotes();
+          this.reloadNotes.next(NoteFetchMode.All);
+        }
+      }
+    });
+
     this.reloadNotes.next(NoteFetchMode.All);
   }
 

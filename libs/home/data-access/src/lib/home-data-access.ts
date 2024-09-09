@@ -3,50 +3,22 @@ import { NoteAdd } from './note-add';
 import { Observable, of } from 'rxjs';
 import { NoteView } from './note-view';
 import { HomeDataAccessPort } from './home-data-access.port';
+import { notes } from './plenty-of-notes';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeDataAccessService implements HomeDataAccessPort {
-  private notes: NoteView[] = [
-    {
-      id: '1',
-      title: 'First note',
-      content: 'This is the first note',
-      dateAdded: new Date(),
-    },
-    {
-      id: '2',
-      title: 'Second note',
-      content: 'This is the second note',
-      dateAdded: new Date(),
-    },
-    {
-      id: '3',
-      title: 'Note Title',
-      content:
-        'Very long Note Body to give you an example on how the box should act',
-      dateAdded: new Date(),
-    },
-    {
-      id: '4',
-      title: 'Note Title',
-      content: 'Note Body',
-      dateAdded: new Date(),
-    },
-    {
-      id: '5',
-      title: 'Note Title',
-      content: 'Note Body',
-      dateAdded: new Date(),
-    },
-    {
-      id: '6',
-      title: 'Note Title',
-      content: 'Note Body',
-      dateAdded: new Date(),
-    },
-  ];
+  private notes: NoteView[] = [];
+
+  public loadFakeNotes(): void {
+    this.notes = [
+      ...notes.map((note) => ({
+        ...note,
+        dateAdded: new Date(note.dateAdded),
+      })),
+    ];
+  }
   public addNote(note: NoteAdd): Observable<void> {
     this.notes.push({
       ...note,
