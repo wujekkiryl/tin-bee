@@ -20,7 +20,7 @@ export class HomeDataAccessService implements HomeDataAccessPort {
     ];
   }
   public addNote(note: NoteAdd): Observable<void> {
-    this.notes.push({
+    this.notes.unshift({
       ...note,
       dateAdded: new Date(),
       id: `${this.notes.length + 1}`,
@@ -29,6 +29,7 @@ export class HomeDataAccessService implements HomeDataAccessPort {
   }
 
   public getAllNotes(): Observable<NoteView[]> {
+    console.log('Getting all notes');
     return of([...this.notes]);
   }
 

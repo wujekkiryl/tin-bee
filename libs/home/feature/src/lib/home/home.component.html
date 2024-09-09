@@ -1,8 +1,6 @@
 <main class="flex flex-col gap-6 pt-4 max-h-screen">
     <lib-header class="px-4"></lib-header>
-    <form class="px-4" [formGroup]="searchForm">
-        <lib-shared-ui-input [prefixIcon]="'search'" [placeholder]="'Search notes...'" formControlName="search" (inputEvent)="valueChanged($event);"></lib-shared-ui-input>
-    </form>
+    <lib-shared-ui-input class="px-4" [prefixIcon]="'search'" [placeholder]="'Search notes...'" (inputEvent)="this.searchInput.set($event);"></lib-shared-ui-input>
     @if (showEmptyState()) {
         <lib-home-ui-empty-state class="px-4" (addNewNote)="openAddNoteSection()"></lib-home-ui-empty-state>
     }
@@ -16,7 +14,7 @@
             <lib-home-ui-new-note (noteAddingCanceled)="closeNoteAdding()" (newNote)="newNote.set($event)"></lib-home-ui-new-note>
         }
         @for (note of notes(); track note.id) {
-            <lib-home-ui-note draggable="true" ondragstart="dragStarted(event)" ondragover="drag(event)" ondragend="dragEnd(event)" ondrop="handleDrop(event)" id="note-{{note.id}}" class="px-4" [note]="note" (noteEdited)="editNote($event)" (noteDeleted)="deleteNote($event)"></lib-home-ui-note>
+            <lib-home-ui-note draggable="true" ondragstart="dragStarted(event)" ondragover="drag(event)" ondragend="dragEnd(event)" ondrop="handleDrop(event)" id="note-{{note.id}}" class="px-4" [note]="note" (noteEdited)="editedNote.set($event)" (noteDeleted)="deletedNoteId.set($event)"></lib-home-ui-note>
         }
     </section>
     <div class="fixed bottom-0 w-full h-[1px] bg-white shadow-bottomWhite"></div>

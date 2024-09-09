@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@tin-bee/header';
 import { SharedUiInputComponent } from '@tin-bee/shared/ui/input';
@@ -10,7 +10,17 @@ import {
   NoteView,
 } from '@tin-bee/home/data-access';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { debounceTime, iif, of, Subject, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  iif,
+  map,
+  merge,
+  Observable,
+  of,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { HomeUiNoteComponent } from '@tin-bee/home/ui/note';
 import {
   PrimaryButtonDirective,
@@ -18,8 +28,7 @@ import {
 } from '@tin-bee/shared/ui/button';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedUiDialogComponent } from '@tin-bee/shared/ui/dialog';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 
 enum NoteFetchMode {
   All,
@@ -37,16 +46,42 @@ enum NoteFetchMode {
     HomeUiNoteComponent,
     SharedUiButtonComponent,
     PrimaryButtonDirective,
-    FormsModule,
-    ReactiveFormsModule,
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   newNoteAddingInProgress = signal(false);
   newNote = signal<NoteAdd | undefined>(undefined);
+  editedNote = signal<NoteView | undefined>(undefined);
+  deletedNoteId = signal<string | undefined>(undefined);
+  deleteNote = toObservable(this.deletedNoteId).pipe(
+    switchMap((noteId: string | undefined) => {
+      if (!noteId) {
+        return of();
+      }
+      return this.openNoteDeleteDialog();
+    }),
+    map((deleteNote) => {
+      if (deleteNote) {
+        return this.homeDataAccess.deleteNote(this.deletedNoteId()!);
+      } else {
+        return of();
+      }
+    }),
+    tap(() => {
+      this.deletedNoteId.set(undefined);
+    })
+  );
+  editNote = toObservable(this.editedNote).pipe(
+    map((note: NoteView | undefined) => {
+      if (!note) {
+        return of();
+      }
+      return this.homeDataAccess.editNote(note.id, note);
+    })
+  );
   addNewNote = toObservable(this.newNote).pipe(
-    switchMap((note: NoteAdd | undefined) => {
+    map((note: NoteAdd | undefined) => {
       if (!note) {
         return of();
       }
@@ -54,47 +89,36 @@ export class HomeComponent implements OnInit {
       return this.homeDataAccess.addNote(note);
     })
   );
+  searchInput = signal('');
   reloadNotes: Subject<NoteFetchMode> = new Subject();
-  notesFetching = this.reloadNotes.pipe(
-    switchMap((mode) =>
-      iif(
+  notesFetching = merge(
+    this.reloadNotes,
+    this.addNewNote.pipe(map(() => NoteFetchMode.All)),
+    this.editNote.pipe(map(() => NoteFetchMode.All)),
+    this.deleteNote.pipe(map(() => NoteFetchMode.All)),
+    toObservable(this.searchInput).pipe(map(() => NoteFetchMode.ByText)),
+    // only for presentation purposes
+    this.getRouteParamToLoadFakeNotes()
+  ).pipe(
+    switchMap((mode) => {
+      return iif(
         () => mode === NoteFetchMode.All,
         this.homeDataAccess.getAllNotes(),
         this.homeDataAccess
           .findNotesByText(this.searchInput())
           .pipe(debounceTime(500))
-      )
-    )
+      );
+    })
   );
   notes = toSignal(this.notesFetching);
   showEmptyState = computed(
     () => !this.newNoteAddingInProgress() && this.notes()?.length === 0
   );
-  searchInput = signal('');
-  searchForm = this.formBuilder.group({
-    search: '',
-  });
   constructor(
     private readonly homeDataAccess: HomeDataAccessService,
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
     private router: Router
   ) {}
-  ngOnInit() {
-    // only for presentation purposes
-    this.router.events.subscribe((val) => {
-      if (val instanceof RoutesRecognized) {
-        const queryParams = val.state.root.queryParams;
-        console.log(queryParams);
-        if (queryParams['loadFakeNotes']) {
-          this.homeDataAccess.loadFakeNotes();
-          this.reloadNotes.next(NoteFetchMode.All);
-        }
-      }
-    });
-
-    this.reloadNotes.next(NoteFetchMode.All);
-  }
 
   openAddNoteSection() {
     this.newNoteAddingInProgress.set(true);
@@ -103,25 +127,28 @@ export class HomeComponent implements OnInit {
   closeNoteAdding() {
     this.newNoteAddingInProgress.set(false);
   }
-  editNote(note: NoteView) {
-    this.homeDataAccess.editNote(note.id, note).subscribe();
-  }
 
-  deleteNote(noteId: string) {
+  private openNoteDeleteDialog(): Observable<SharedUiDialogComponent> {
     const dialogRef = this.dialog.open(SharedUiDialogComponent, {
       width: 'calc(100vw - 16px)',
       maxWidth: 'calc(100vw - 16px)',
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.homeDataAccess.deleteNote(noteId).subscribe();
-        this.reloadNotes.next(NoteFetchMode.All);
-      }
-    });
+    return dialogRef.afterClosed();
   }
-
-  valueChanged(value: string) {
-    this.searchInput.set(value);
-    this.reloadNotes.next(NoteFetchMode.ByText);
+  private getRouteParamToLoadFakeNotes(): Observable<
+    NoteFetchMode | undefined
+  > {
+    return this.router.events.pipe(
+      map((value) => {
+        if (value instanceof RoutesRecognized) {
+          const queryParams = value.state.root.queryParams;
+          if (queryParams['loadFakeNotes']) {
+            this.homeDataAccess.loadFakeNotes();
+            return NoteFetchMode.All;
+          }
+        }
+        return undefined;
+      })
+    );
   }
 }
