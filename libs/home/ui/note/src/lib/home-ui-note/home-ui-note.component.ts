@@ -8,7 +8,7 @@ import { NoteView } from '@tin-bee/home/data-access';
   standalone: true,
   imports: [CommonModule, MatIcon],
   templateUrl: './home-ui-note.component.html',
-  styleUrl: './home-ui-note.component.css',
+  styleUrl: './home-ui-note.component.scss',
 })
 export class HomeUiNoteComponent {
   @Input() note!: NoteView;
