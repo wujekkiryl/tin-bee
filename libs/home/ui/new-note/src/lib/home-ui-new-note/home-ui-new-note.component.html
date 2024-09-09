@@ -1,14 +1,22 @@
 <section class="flex flex-col p-2 gap-3 shadow-box mt-1">
     <section class="flex flex-row justify-between">
-        <h2 class="text-xl mt-3">Add new note</h2>
+        @if (note) {
+            <h2 class="text-xl mt-3">Edit note</h2>
+        } @else {
+            <h2 class="text-xl mt-3">Add new note</h2>
+        }
         <!--        <lib-shared-ui-button libCancelButton>cancel</lib-shared-ui-button>-->
         <lib-shared-ui-button class="text-blue font-thin text-sm" (click)="cancelNoteAdding()">Cancel</lib-shared-ui-button>
     </section>
-    <form [formGroup]="addNoteForm"  class="relative">
+    <form [formGroup]="addNoteForm"  class="relative flex flex-col gap-4">
         <lib-shared-ui-input [placeholder]="'Untitled Note'" formControlName="title"></lib-shared-ui-input>
         <lib-shared-ui-textarea [placeholder]="'Your note...'" formControlName="content"></lib-shared-ui-textarea>
         @if (showAddButton()) {
-            <lib-shared-ui-button libPrimaryButton class="absolute right-6 bottom-10" (click)="addNote()">Add</lib-shared-ui-button>
+            @if (note) {
+                <lib-shared-ui-button libPrimaryButton class="absolute right-6 bottom-6" (click)="addNote()">save</lib-shared-ui-button>
+            } @else {
+                <lib-shared-ui-button libPrimaryButton class="absolute right-6 bottom-6" (click)="addNote()">Add</lib-shared-ui-button>
+            }
         }
     </form>
 </section>

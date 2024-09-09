@@ -66,7 +66,7 @@ export class HomeComponent {
     this.newNoteAddingInProgress.set(false);
   }
   editNote(note: NoteView) {
-    console.log('Edit note', note);
+    this.homeDataAccess.editNote(note.id, note).subscribe();
   }
 
   deleteNote(noteId: string) {
