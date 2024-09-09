@@ -1,6 +1,8 @@
 <main class="flex flex-col gap-6 pt-4 max-h-screen">
     <lib-header class="px-4"></lib-header>
-    <lib-shared-ui-input class="px-4" [prefixIcon]="'search'" [placeholder]="'Search notes...'"></lib-shared-ui-input>
+    <form class="px-4" [formGroup]="searchForm">
+        <lib-shared-ui-input [prefixIcon]="'search'" [placeholder]="'Search notes...'" formControlName="search" (inputEvent)="valueChanged($event);"></lib-shared-ui-input>
+    </form>
     @if (showEmptyState()) {
         <lib-home-ui-empty-state class="px-4" (addNewNote)="openAddNoteSection()"></lib-home-ui-empty-state>
     }

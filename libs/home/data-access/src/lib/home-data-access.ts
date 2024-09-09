@@ -57,7 +57,7 @@ export class HomeDataAccessService implements HomeDataAccessPort {
   }
 
   public getAllNotes(): Observable<NoteView[]> {
-    return of(this.notes);
+    return of([...this.notes]);
   }
 
   editNote(noteId: string, note: NoteAdd): Observable<void> {
@@ -80,5 +80,15 @@ export class HomeDataAccessService implements HomeDataAccessPort {
     }
     this.notes.splice(noteIndex, 1);
     return of();
+  }
+
+  findNotesByText(text: string): Observable<NoteView[]> {
+    return of(
+      this.notes.filter(
+        (note) =>
+          note.title.toLowerCase().includes(text.toLowerCase()) ||
+          note.content.toLowerCase().includes(text.toLowerCase())
+      )
+    );
   }
 }

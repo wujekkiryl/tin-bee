@@ -7,4 +7,5 @@ export interface HomeDataAccessPort {
   addNote(note: NoteAdd): Observable<void>;
   editNote(noteId: string, note: NoteAdd): Observable<void>;
   deleteNote(noteId: string): Observable<void>;
+  findNotesByText(text: string): Observable<NoteView[]>;
 }

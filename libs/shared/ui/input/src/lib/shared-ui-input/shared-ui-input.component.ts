@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +24,7 @@ export class SharedUiInputComponent implements ControlValueAccessor {
   value = '';
   @Input() prefixIcon?: string;
   @Input() placeholder?: string;
+  @Output() inputEvent = new EventEmitter<string>();
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   onChange = (value: string) => {};
@@ -50,5 +51,11 @@ export class SharedUiInputComponent implements ControlValueAccessor {
     const value = ($event.target as HTMLInputElement).value;
     this.onChange(value);
     this.onTouch();
+  }
+
+  onInputEvent($event: Event) {
+    const value = ($event.target as HTMLInputElement).value;
+    this.value = value;
+    this.inputEvent.emit(value);
   }
 }
