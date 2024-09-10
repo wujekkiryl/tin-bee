@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tin-bee/header": ["libs/header/src/index.ts"],
+      "@tin-bee/home/data-access": ["libs/home/data-access/src/index.ts"],
+      "@tin-bee/home/feature": ["libs/home/feature/src/index.ts"],
+      "@tin-bee/home/ui/empty-state": ["libs/home/ui/empty-state/src/index.ts"],
+      "@tin-bee/home/ui/new-note": ["libs/home/ui/new-note/src/index.ts"],
+      "@tin-bee/home/ui/note": ["libs/home/ui/note/src/index.ts"],
+      "@tin-bee/shared/ui/button": ["libs/shared/ui/button/src/index.ts"],
+      "@tin-bee/shared/ui/dialog": ["libs/shared/ui/dialog/src/index.ts"],
+      "@tin-bee/shared/ui/input": ["libs/shared/ui/input/src/index.ts"],
+      "@tin-bee/shared/ui/textarea": ["libs/shared/ui/textarea/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
